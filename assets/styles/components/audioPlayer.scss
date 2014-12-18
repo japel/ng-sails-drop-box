@@ -1,0 +1,61 @@
+
+$l: 40px;
+$r: 120px;
+$p: 10px;
+
+#player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  z-index: 9;
+
+  .audiojs {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px ($r + $p) 10px ($l + $p);
+
+    .play-pause {
+      width: $l;
+      height: auto;
+      padding: 4px 6px;
+      margin: 0;
+      float: none;
+      overflow: hidden;
+      border-right: 1px solid #000;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    .scrubber {
+      display: block;
+      float: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    .time {
+      float: none;
+      height: 36px;
+      line-height: 36px;
+      margin: 0 0 0 6px;
+      padding: 0 6px 0 12px;
+      border-left: 1px solid #000;
+      color: #ddd;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+      text-align: center;
+      width: $r;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}

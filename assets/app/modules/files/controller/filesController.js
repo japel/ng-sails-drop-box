@@ -4,7 +4,7 @@
  * Time: 15:58
  */
 angular.module("app.files")
-  .controller("filesController", function ctrl($scope, folder, $http, $location, $route, $upload, $q, $filter, modal, $timeout, $interval, $mdSidenav, $mdBottomSheet) {
+  .controller("filesController", function ctrl($scope, folder, $http, $location, $route, $upload, $q, $filter, modal, $timeout, $interval, $mdSidenav, $mdBottomSheet, audioPlayer) {
     var $$scope = $scope;
     var forbiddenFiles = ['thumbs.db'];
     var orderBy = $filter('orderBy');
@@ -14,13 +14,10 @@ angular.module("app.files")
       return regex.test(mime);
     }
 
-    /*$scope.showGridBottomSheet = function ($event) {
-     $mdBottomSheet.show({
-     templateUrl: '/app/modules/files/templates/files.bottomSheet.html',
-     controller: 'FilesGridBottomSheetController',
-     targetEvent: $event
-     });
-     };*/
+    function isMusic(mime) {
+      var regex = /audio\/mpeg/gi;
+      return regex.test(mime);
+    }
 
     $scope.rnd = function () {
       return Math.floor(Math.random() * 100);
@@ -42,7 +39,11 @@ angular.module("app.files")
     };
 
     $scope.href = function (file) {
-      if (!isImage(file.mime)) {
+      if (isImage(file.mime)) {
+        //todo
+      } else if(isMusic(file.mime)) {
+        //todo
+      } else {
         return 'api/v1/file/' + file.id + '/' + file.name;
       }
     };
@@ -67,6 +68,10 @@ angular.module("app.files")
           $timeout(function () {
             dialog.open();
           }, 0, false);
+        }else if(isMusic(file.mime)){
+          audioPlayer.load('api/v1/file/' + file.id + '/' + file.name);
+          audioPlayer.show();
+          audioPlayer.play();
         }
       };
 
@@ -144,24 +149,24 @@ angular.module("app.files")
         });
       }
 
-      function kbps(){
+      function KBPS() {
         var netxTickAmount = 0;
         var interval = 500; //ms
         this.atm = 0;
         var firstTick = true;
         var timeOut = null;
         this.add = function (amount) {
-          if(firstTick){
+          if (firstTick) {
             this.atm += amount;
-            if(timeOut === null){
+            if (timeOut === null) {
               this.startTicks();
             }
-          }else{
+          } else {
             netxTickAmount += amount;
           }
         };
         this.tick = function () {
-          if(!firstTick){
+          if (!firstTick) {
             firstTick = false;
             this.atm = netxTickAmount;
             netxTickAmount = 0;
@@ -180,7 +185,6 @@ angular.module("app.files")
       }
 
       $scope.onFileSelect = function ($_files, $event, $rejectedFiles, _folder) {
-        var kbpsBuffer = 5;
         var done = 0;
         var uploadFolder = _folder || folder;
         var uploadUrl = '/api/v1/upload/' + uploadFolder.id;
@@ -220,7 +224,7 @@ angular.module("app.files")
         }
 
         function handleFileUpload(file) {
-          file.kbps = new kbps();
+          file.kbps = new KBPS();
           file.uploadStarted = true;
           $$scope.$root.showUpload = false;
           var def = $q.defer();

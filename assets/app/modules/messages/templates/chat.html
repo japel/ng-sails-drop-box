@@ -1,0 +1,38 @@
+<div class="chat-layout" data-ng-init="limit = 15">
+  <div class="top">
+    <md-content style="height: 100%;" scroll-glue="chat.messages">
+      <ol class="discussion">
+        <li layout="row" layout-align="start start" data-ng-class="{'other': message.user != $root.$user.id, 'self': message.user == $root.$user.id}" ng-repeat="message in chat.messages | orderBy:'-createdAt' | limitTo:limit | orderBy:'createdAt' track by message.id">
+          <div class="avatar">
+            <img data-ng-if="message.user != $root.$user.id" src="http://placekitten.com/g/200/400"/>
+            <img data-ng-if="message.user == $root.$user.id" src="http://placekitten.com/g/200/300"/>
+          </div>
+          <div class="messages">
+            <div data-chat-body="message.body"></div>
+            <time>{{members[message.user].username}} • {{message.createdAt | date:'short'}}</time>
+          </div>
+        </li>
+      </ol>
+    </md-content>
+  </div>
+  <div class="bottom">
+    <md-divider></md-divider>
+    <md-content class="md-padding" id="scrollPoint" layout-gt-sm="row">
+      <textarea class="chat" data-ng-model="answer" data-ng-keyup="chatKeyEvent($event)" data-ng-keypress="chatKeyEvent($event)" placeholder="Antwort" flex=""></textarea>
+      <md-button class="md-raised" data-ng-click="send()" flex-gt-sm="10" flex-sm="100" ng-show="!sendingMessage" ng-disabled="answer == ''">
+        Senden
+      </md-button>
+      <div flex-gt-sm="10" flex-sm="100" data-ng-if="sendingMessage" style="overflow: hidden;" class="text-center">
+        <md-progress-circular md-mode="indeterminate" style="display: inline-block;"></md-progress-circular>
+      </div>
+    </md-content>
+  </div>
+</div>
+
+
+<md-button ng-if="browserSupportsNotifications" class="md-primary md-fab md-fab-top-right" ng-click="toggleNotif()" aria-label="notifications">
+  <i class="fa fa-2x" data-ng-class="{'fa-bell-slash': !notificationsActive, 'fa-bell': notificationsActive}"></i>
+  <md-tooltip>
+    {{notificationsActive ? 'Notifications ausschalten' : 'Notifications einschalten'}}
+  </md-tooltip>
+</md-button>

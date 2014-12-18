@@ -1,0 +1,28 @@
+<md-bottom-sheet class="md-list md-has-header">
+  <md-subheader>Optionen</md-subheader>
+  <md-list>
+    <md-item>
+      <md-button aria-label="{{item.name}}" ng-click="close()">
+        <!-- Using custom inline icon until md-icon is ready. DONT USE ME! -->
+        <md-inline-list-icon><i class="fa fa-cogs"></i></md-inline-list-icon>
+        <span class="md-inline-list-icon-label">Einstellungen</span>
+      </md-button>
+    </md-item>
+    <md-item>
+
+      <button class="md-button md-primary" aria-label="Upload" ng-file-select="onFileSelect($files)" data-multiple="true" ng-click="close()">
+        <md-inline-list-icon><i class="fa fa-upload"></i></md-inline-list-icon>
+        <span class="md-inline-list-icon-label">Upload</span>
+      </button>
+
+    </md-item>
+    <md-item>
+
+      <button class="md-button md-primary" aria-label="Neuer Ordner" ng-click="newFolder(); close()">
+        <md-inline-list-icon><i class="fa fa-folder"></i></md-inline-list-icon>
+        <span class="md-inline-list-icon-label">Neuer Ordner</span>
+      </button>
+
+    </md-item>
+  </md-list>
+</md-bottom-sheet>

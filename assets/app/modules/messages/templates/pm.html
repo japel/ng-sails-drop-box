@@ -1,0 +1,29 @@
+<div layout="column">
+
+  <md-button ng-click="newMessage($event)" class="md-primary md-fab md-fab-top-right" aria-label="Neue Nachricht">
+    <i class="fa fa-plus"></i>
+  </md-button>
+
+  <md-content>
+
+    <md-list>
+      <a data-ng-href="/messages/chat/{{chat.id}}" class="md-item" ng-repeat="chat in chats">
+        <md-item-content>
+          <div class="md-tile-left text-center">
+            <i class="fa fa-comment fa-2x"></i>
+          </div>
+          <div class="md-tile-content">
+            <h3>{{getMembers(chat)}}</h3>
+            <h4 data-ng-if="chat.messages.length > 0">{{chat.messages[0].body | htmlToPlaintext}}</h4>
+
+            <p data-ng-if="chat.messages.length > 0">
+              {{chat.messages[0].createdAt | date:'short'}}
+            </p>
+          </div>
+        </md-item-content>
+        <md-divider inset data-ng-if="!$last"></md-divider>
+      </a>
+    </md-list>
+
+  </md-content>
+</div>

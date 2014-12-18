@@ -1,0 +1,14 @@
+[
+  {
+    "name": "MDB",
+    "script": "app.js",
+    "cwd": "/opt/apps/materialDropBox",
+    "error_file": "./logs/materialDropBox-err.log",
+    "out_file": "./logs/materialDropBox-out.log",
+    "instances": "1",
+    "port": "4567",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+]

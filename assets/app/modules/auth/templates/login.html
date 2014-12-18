@@ -1,0 +1,27 @@
+<div layout="column" layout-fill="" class="box">
+  <div flex="" layout="column">
+
+    <div layout="row" layout-sm="column" layout-align="space-around" data-ng-show="isLoading">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <section class="md-whiteframe-z1" data-ng-show="!isLoading">
+
+      <md-content class="md-padding">
+        <div>
+          <div data-alert class="alert-box alert" data-ng-if="displayAuthError">
+            Benutzername oder Passwort falsch.
+          </div>
+          <form data-ng-submit="login()" >
+            <md-text-float label="Benutzername" ng-model="login.username" class="long"></md-text-float>
+            <md-text-float label="Passwort" type="password" ng-model="login.password" class="long"></md-text-float>
+            <input type="submit" style="display: none;">
+          </form>
+          <md-button class="md-raised md-primary" ng-click="login()">Anmelden</md-button>
+        </div>
+      </md-content>
+
+    </section>
+
+  </div>
+</div>

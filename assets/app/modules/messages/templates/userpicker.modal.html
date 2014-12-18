@@ -1,0 +1,29 @@
+<md-dialog aria-label="Neue Nachricht" data-ng-if="!loading">
+  <md-content style="width: 500px; max-width: 100%;">
+    <md-text-float label="Benutzer" ng-model="search" class="long"></md-text-float>
+    <br>
+    <br>
+    <md-list>
+      <md-divider inset></md-divider>
+      <a ng-click="to(user)" class="md-item" ng-repeat="user in users | filter:search" data-ng-if="$root.$user.id != user.id">
+        <md-item-content>
+          <div class="md-tile-content">
+            <h3>{{user.username}}</h3>
+          </div>
+        </md-item-content>
+        <md-divider inset></md-divider>
+      </a>
+    </md-list>
+  </md-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()">
+      Abbrechen
+    </md-button>
+  </div>
+</md-dialog>
+<md-dialog aria-label="Neue Nachricht" data-ng-if="loading">
+  <div layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+</md-dialog>

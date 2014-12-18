@@ -1,0 +1,73 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('md')">
+  <md-toolbar>
+    <h1 class="md-toolbar-tools">
+      <!--<a href="/" data-ng-click="toggleLeft()">
+        <i class="fa fa-home"></i> Start
+      </a>-->
+      <md-button href="/" data-ng-click="toggleLeft()" class="header">
+        <i class="fa fa-rebel"></i> Rebel Box
+      </md-button>
+    </h1>
+  </md-toolbar>
+  <md-content ng-controller="LeftCtrl">
+    <div data-ng-if="$root.$user">
+      <md-button href="/messages" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item"><i class="fa fa-comments"></i> Nachrichten
+      </md-button>
+      <md-button href="/files" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item"><i class="fa fa-file"></i> FTP
+      </md-button>
+      <md-button href="/me" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item"><i class="fa fa-user"></i> Profil
+      </md-button>
+    </div>
+
+    <!--<a href="/auth/login" data-ng-show="!$root.$user" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item">
+      <i class="fa fa-user"></i> Login
+    </a>
+    <a href="/auth/logout" data-ng-show="$root.$user" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item">
+      <i class="fa fa-power-off"></i> Logout
+    </a>-->
+    <md-button href="/auth/login" data-ng-show="!$root.$user" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item">
+      <i class="fa fa-user"></i> Login
+    </md-button>
+    <md-button href="/auth/logout" data-ng-show="$root.$user" data-ng-click="toggleLeft()" class="menu-item menu-title md-menu-item">
+      <i class="fa fa-power-off"></i> Logout
+    </md-button>
+
+  </md-content>
+</md-sidenav>
+
+<div role="main" tabindex="1" layout="column" layout-fill="">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div flex="10" hide-gt-md><a href="" class="fa fa-bars" data-ng-click="toggleLeft()"></a></div>
+        <div flex="">
+          {{$root.$title || $root.$route.title}}
+        </div>
+        <div flex="10"></div>
+        <div data-ng-if="$root['options-bar']">
+          <a ng-click="toggleRight()" class="md-button" data-aria-label="Einstellungen">
+            <i class="fa fa-cogs"></i>
+          </a>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-content flex="" md-scroll-y="" ng-view="">
+    </md-content>
+</div>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+  <md-toolbar ng-controller="RightCtrl">
+    <div class="md-toolbar-tools">
+      <div flex="">
+        <h1 class="md-toolbar-tools">Optionen</h1>
+      </div>
+      <div flex="10" class="text-right">
+        <a href="" class="fa fa-times" ng-click="close()"></a>
+      </div>
+    </div>
+  </md-toolbar>
+  <md-content class="" named-view="options-bar">
+    <!--<md-button ng-click="close()" class="menu-item menu-title md-menu-item">
+      Schließen
+    </md-button>-->
+  </md-content>
+</md-sidenav>

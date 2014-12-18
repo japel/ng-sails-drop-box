@@ -1,0 +1,24 @@
+<md-dialog>
+    <md-content class="dialog-content">
+        <md-subheader class="sticky-no-effect">Neuer Ordner</md-subheader>
+
+        <label>
+            Name:
+            <input type="text" data-ng-model="newFolder.name">
+        </label>
+
+        <md-switch ng-model="newFolder.private" aria-label="newFolder.private">
+            Privat: {{ newFolder.private ? 'Ja' : 'Nein' }}
+        </md-switch>
+
+    </md-content>
+
+    <div class="dialog-actions" data-layout="horizontal" data-layout-align="end">
+        <md-button data-ng-click="abort(); close()" class="md-theme-red">
+            Abbrechen
+        </md-button>
+        <md-button data-ng-click="create(); close()" class="md-theme-green">
+            Erstellen
+        </md-button>
+    </div>
+</md-dialog>

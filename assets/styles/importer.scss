@@ -1,0 +1,140 @@
+$fa-font-path: '/dependencies/fontawesome/fonts';
+@import "../../bower_components/fontawesome/scss/font-awesome";
+$slick-font-path: '/dependencies/slick-carousel/slick/fonts/';
+$slick-loader-path: '/dependencies/slick-carousel/slick/';
+@import "../../bower_components/slick-carousel/slick/slick";
+
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 400;
+  src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(https://fonts.gstatic.com/s/robotodraft/v1/0xES5Sl_v6oyT7dAKuoni4gp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotodraft/v1/0xES5Sl_v6oyT7dAKuoni7rIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 500;
+  src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(https://fonts.gstatic.com/s/robotodraft/v1/u0_CMoUf3y3-4Ss4ci-VwXJuJo8UJJfpGKt7pXjBv4s.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotodraft/v1/u0_CMoUf3y3-4Ss4ci-VwaTA90I55Xt7owhZwpPnMsc.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 700;
+  src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(https://fonts.gstatic.com/s/robotodraft/v1/u0_CMoUf3y3-4Ss4ci-Vwf79_ZuUxCigM2DespTnFaw.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotodraft/v1/u0_CMoUf3y3-4Ss4ci-VwRbnBKKEOwRKgsHDreGcocg.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: italic;
+  font-weight: 400;
+  src: local('RobotoDraft Italic'), local('RobotoDraft-Italic'), url(https://fonts.gstatic.com/s/robotodraft/v1/er-TIW55l9KWsTS1x9bTfgeOulFbQKHxPa89BaxZzA0.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotodraft/v1/er-TIW55l9KWsTS1x9bTfoo3ZslTYfJv0R05CazkwN8.woff) format('woff');
+}
+
+//@import "../../bower_components/foundation/scss/foundation/components/alert-boxes";
+
+body, html {
+  position: static;
+  overflow: hidden;
+}
+
+body.unlinked {
+  > * {
+    display: none;
+  }
+  > .preloader {
+    display: block;
+    text-align: center;
+  }
+}
+body.linked {
+  > .preloader {
+    display: none !important;
+  }
+}
+
+/* Let's get this party started */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+}
+
+*::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0,0,0,0.3);
+}
+
+.menu-item {
+  background: none;
+  border-width: 0;
+  cursor: pointer;
+  display: block;
+  color: #333;
+  font-size: inherit;
+  line-height: 40px;
+  max-height: 40px;
+  opacity: 1;
+  margin: 0;
+  outline: none;
+  padding: 0px 28px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  z-index: 1;
+  -webkit-transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+  -webkit-transition-property: max-height, background-color, opacity;
+  -moz-transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+  -moz-transition-property: max-height, background-color, opacity;
+  transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: max-height, background-color, opacity;
+}
+.menu-item.ng-hide {
+  max-height: 0;
+  opacity: 0;
+}
+.menu-item:hover {
+  color: #999;
+}
+.menu-item:focus {
+  font-weight: bold;
+}
+.menu-item.menu-title {
+  color: #888;
+  font-size: 14px;
+  padding-left: 16px;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 0.35s cubic-bezier(0.35, 0, 0.25, 1);
+}
+.menu-item.menu-title:hover,
+.menu-item.menu-title.active {
+  color: #1976d2;
+}
+
+.menu-icon {
+  background: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@import "material/layout";
+@import "components/chat";
+@import "components/image-slider";
+@import "components/file-grid";
+@import "components/emtec-modal";
+@import "components/fileList";
+@import "components/breadcrumps";

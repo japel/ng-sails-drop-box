@@ -1,0 +1,119 @@
+<md-content flex md-scroll-y class="file-layout default-theme" ng-file-drop data-ng-file-change="onFileSelect($files)" data-ng-multiple="true" data-allow-dir="true">
+
+  <ul class="breadcrumps">
+    <li>
+      <md-button href="/files" aria-label="start">
+        <i class="fa fa-home"></i>
+      </md-button>
+    </li>
+    <li data-ng-if="$$folder.parentPath.length > 0">
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li data-ng-repeat-start="parent in $$folder.parentPath track by parent.id" data-ng-if="parent.name != '$$root'" class="clickable">
+      <md-button href="/files/{{parent.id}}">
+        {{::parent.name}}
+      </md-button>
+    </li>
+    <li data-ng-repeat-end data-ng-if="parent.name != '$$root'">
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li data-ng-if="$$folder.name != '$$root'">
+      {{$$folder.name}}
+    </li>
+  </ul>
+  <md-divider></md-divider>
+
+  <!--
+  Actual Folders (TODO)
+  -->
+  <section data-ng-if="folder.length > 0">
+    <md-subheader>Ordner</md-subheader>
+    <md-content class="md-padding">
+      <div class="file-list">
+        <a href="" class="list-item"
+          ng-click="handleFolder(item, $event)"
+          ng-repeat-start="item in folder | orderBy:'name' track by item.id"
+          ng-file-drop data-ng-file-change="onFileSelect($files, $event, $rejectedFiles, item)" data-ng-multiple="true" data-stop-propagation="true">
+          <div class="list-item-tile">
+            <i class="fa" data-ng-class="(item.isLoading ? 'fa-circle-o-notch fa-spin' : 'fa-folder')"></i>
+          </div>
+          <div class="list-item-content">
+            <h3>{{item.name}}</h3>
+            <h4>{{item.createdAt | date:'medium'}}</h4>
+            <md-progress-linear md-mode="determinate" ng-value="item.determinateValue" data-ng-if="item.determinateValue && item.determinateValue != 100"></md-progress-linear>
+          </div>
+        </a>
+        <md-divider ng-repeat-end ng-if="!$last"></md-divider>
+      </div>
+    </md-content>
+
+    <md-divider></md-divider>
+  </section>
+
+  <section data-ng-if="files.length > 0 || uploads.length > 0 || ($$folder.determinateValue && $$folder.determinateValue != 100)">
+    <md-subheader>
+      Datein
+      <md-progress-linear md-mode="determinate" ng-value="$$folder.determinateValue" data-ng-if="$$folder.determinateValue && $$folder.determinateValue != 100"></md-progress-linear>
+    </md-subheader>
+    <md-content class="md-padding">
+
+      <div class="file-list">
+        <!--
+        Upload pseudo elements
+        -->
+        <a href="" class="list-item" ng-repeat="upload in $$folder.uploads">
+          <div class="list-item-tile">
+            <div layout="row" layout-sm="column" layout-align="space-around">
+              <md-progress-circular md-mode="determinate" value="{{upload.done * 100}}"></md-progress-circular>
+            </div>
+          </div>
+          <div class="list-item-content">
+            <h3>{{upload.name}}</h3>
+            <h4>{{upload.kbps.atm() / 1024 | number:1}} kB/s</h4>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </a>
+
+        <!--
+        Actual Elements
+        -->
+        <a href="" class="" target="{{target(item)}}"
+          ng-repeat="item in files | orderBy:'name' track by item.id"
+          data-ng-href="{{href(item)}}"
+          data-ng-click="clickFile(item, $event)">
+
+          <!--
+          Image File
+          -->
+          <div class="list-item" data-ng-if="item.thumb">
+            <div class="list-item-tile">
+              <div class="item-icon" style="background-image: url('{{::item.thumb}}');"></div>
+            </div>
+            <div class="list-item-content">
+              <h3>{{item.name}}</h3>
+              <h4>{{item.createdAt | date:'medium'}} <span class="right"><i class="fa fa-eye"></i> {{item.accessCounter}}</span></h4>
+            </div>
+          </div>
+          <!--
+          Plain File (TODO)
+          -->
+          <div class="list-item" data-ng-if="!item.thumb">
+            <div class="list-item-tile">
+              <i class="fa fa-file"></i>
+            </div>
+            <div class="list-item-content">
+              <h3>{{item.name}}</h3>
+              <h4>{{item.createdAt | date:'medium'}}</h4>
+            </div>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </a>
+      </div>
+
+    </md-content>
+  </section>
+</md-content>
+
+<button class="md-primary md-fab md-button md-default-theme md-fab-top-right md-primary" aria-label="Upload" ng-file-select="onFileSelect($files)" data-multiple="true">
+  <i class="fa fa-upload"></i>
+</button>

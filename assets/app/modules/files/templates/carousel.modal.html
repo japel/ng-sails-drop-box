@@ -1,0 +1,11 @@
+<slick class="slider image-item single-item" data-current-index="slickIndex" data-lazy-load="ondemand">
+  <div data-ng-repeat="image in images" class="image-frame">
+    <a href="/api/v1/file/{{image.id}}/{{image.name}}" target="_blank">
+      <img data-lazy="/api/v1/file/{{image.id}}/{{image.name}}" data-on-load="image.loaded = true">
+    </a>
+  </div>
+</slick>
+
+<a href="" class="closer" data-ng-click="dialog.close()">
+  <i class="fa fa-times-circle-o"></i>
+</a>

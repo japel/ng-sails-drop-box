@@ -1,0 +1,103 @@
+
+[layout=column].box {
+  max-width: 864px;
+  margin: auto;
+}
+
+a {
+  cursor: pointer;
+}
+
+md-input-group, .md-input-group {
+  &.long {
+    width: 100%;
+    > input {
+      width: 100%;
+    }
+  }
+}
+
+img.face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px;
+}
+
+
+.text-right {
+  text-align: right;
+}
+
+.right {
+  float: right;
+}
+
+body {
+/*  background: url('/images/abstract.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+  overflow-x: hidden;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.md-tile-right, .md-tile-left {
+  min-width: 80px;
+  > .fa, > img.face {
+    margin: 15px;
+  }
+}
+
+.portrait-wrapper {
+  width: 50px;
+  height: 50px;
+  background: no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #DDD;
+}
+
+.chat-bubble {
+  padding: 10px;
+  margin: 15px;
+  color: white;
+  background-color: #607d8b;
+  &.other {
+    background-color: #03a9f4;
+  }
+  .clock {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    color: #888;
+    font-size: 0.6em;
+  }
+}
+
+.md-button.md-fab {
+  line-height: 46px;
+  .fa {
+    font-size: 1.3em;
+  }
+}
+
+.header, .md-toolbar-tools .md-button.header {
+  font-size: inherit;
+  margin: 0;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.stretch-children > * {
+  width: 100%;
+}

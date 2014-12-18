@@ -1,0 +1,18 @@
+.breadcrumps {
+  list-style: none;
+  display: block;
+  padding: 16px 0 16px 16px;
+  margin: 0;
+  > * {
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    display: inline-block;
+    &.clickable {
+      padding: 0;
+    }
+    .md-button {
+      text-transform: none;
+    }
+  }
+}

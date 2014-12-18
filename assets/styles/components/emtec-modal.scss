@@ -1,0 +1,74 @@
+/*
+======================================================================
+======================== modal =======================================
+======================================================================
+*/
+
+.reveal-modal-bg {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10000000;
+  position: fixed;
+}
+
+.reveal-modal-frame {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 50px;
+  overflow-y: auto;
+  text-align: center;
+  z-index: 10000001;
+
+  &.slick {
+    padding: 0;
+  }
+}
+
+.reveal-modal-frame .modal-closer {
+  top: 15px;
+  right: 15px;
+  font-size: 3em;
+  position: fixed;
+}
+
+.reveal-modal-inner {
+  background: #FFF;
+  padding: 25px;
+  width: 500px;
+  text-align: left;
+  left: 50%;
+  margin-left: -250px;
+  position: relative;
+  .slick & {
+    background: transparent;
+    padding: 0;
+    width: auto;
+    left: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+  }
+}
+
+.reveal-modal-bg,
+.reveal-modal-frame {
+  display: none;
+  visibility: visible;
+}
+
+.closer {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2em;
+  color: #FFF;
+  text-shadow: 0 0 5px #000;
+}

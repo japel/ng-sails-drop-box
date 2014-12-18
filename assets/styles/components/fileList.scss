@@ -1,0 +1,82 @@
+$tileWidth: 60px;
+$iconRadius: 50px;
+
+.file-list {
+  padding: 8px 0;
+
+  a {
+    cursor: pointer;
+  }
+
+  .list-item {
+    padding-left: $tileWidth;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    min-height: 80px;
+    text-align: left;
+
+    .list-item-tile {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $tileWidth;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .fa {
+        font-size: 2em;
+      }
+
+      .item-icon {
+        height: $iconRadius;
+        width: $iconRadius;
+        background-size: cover;
+        background-position: center center;
+        margin: 5px 5px 5px 0;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+      }
+
+    }
+
+    .list-item-content {
+      padding: 0 15px;
+      text-align: left;
+      display: block;
+      width: 100%;
+      h4, h3 {
+        margin: 0;
+        font-weight: normal;
+      }
+      h3 {
+
+      }
+      h4 {
+        font-size: 0.875em;
+        color: #777;
+      }
+    }
+  }
+}
+
+.file-layout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+
+  .dragover, &.dragover {
+    background-color: #EFEFEF;
+  }
+
+  .md-subheader {
+    margin-right: 0;
+  }
+}

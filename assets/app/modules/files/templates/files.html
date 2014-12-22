@@ -52,10 +52,19 @@
 
   <section data-ng-if="files.length > 0 || uploads.length > 0 || ($$folder.determinateValue && $$folder.determinateValue != 100)">
     <md-subheader>
-      Datein
+      {{viewMode == 'files' ? 'Datein' : 'Bilder'}}
       <md-progress-linear md-mode="determinate" ng-value="$$folder.determinateValue" data-ng-if="$$folder.determinateValue && $$folder.determinateValue != 100"></md-progress-linear>
     </md-subheader>
-    <md-content class="md-padding">
+    <md-content class="md-padding" ng-if="viewMode == 'pictures'">
+      <div class="masonry">
+          <a href=""
+            data-ng-repeat="image in images"
+            data-ng-click="showPicture($event, image)">
+            <img ng-src="{{image.thumb}}">
+          </a>
+      </div>
+    </md-content>
+    <md-content class="md-padding" ng-if="viewMode == 'files'">
 
       <div class="file-list">
         <!--

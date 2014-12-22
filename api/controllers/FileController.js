@@ -41,7 +41,7 @@ module.exports = {
             if (['jpg', 'jpeg', 'png'].indexOf(extension.toLowerCase()) != -1) {
                 ensureExists(GLOBAL.FTPTHumbsPath);
                 gm(obj.path)
-                    .resize(200, 200)
+                    .resize(400, 200)
                     .write(GLOBAL.FTPTHumbsPath + '/' + pathLib.basename(file.fd), function (err, buffer) {
                         if (err) throw(err);
                         obj.thumb = '/thumbs/' + pathLib.basename(file.fd);

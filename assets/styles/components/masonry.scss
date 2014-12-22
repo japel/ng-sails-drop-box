@@ -1,0 +1,52 @@
+
+.masonry {
+  padding: .5vw;
+  font-size: 0;
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: space-between; /* Safari 6.1+ */
+  display: flex;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  > * {
+    height: 200px;
+    margin: .5vw;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    img {
+      width: auto;
+      max-height: 100%;
+      border-radius: 2px;
+    }
+  }
+}
+
+.masonry-popup {
+  img {
+    max-width: 95vw;
+    max-height: 95vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* fallback for earlier versions of Firefox */
+
+/*@supports not (flex-wrap: wrap) {
+  .masonry {
+    display: block;
+    img {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}*/
+
+

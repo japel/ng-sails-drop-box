@@ -8,6 +8,7 @@ angular.module("app.files").config(function ($routeProvider) {
   var filesConfig = {
     templateUrl: '/app/modules/files/templates/files.html',
     title: 'FTP',
+    reloadOnSearch: false,
     controller: 'filesController',
     resolve: {
       folder: function ($http, $route) {

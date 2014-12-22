@@ -1,0 +1,8 @@
+<div class="masonry-popup">
+  <div data-ng-if="!loaded">
+    <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+  </div>
+  <a href="" data-ng-click="cancel()" target="_blank" data-ng-show="loaded">
+    <img ng-src="/api/v1/file/{{image.id}}/{{image.name}}" data-on-load="loaded = true">
+  </a>
+</div>

@@ -4,7 +4,7 @@
  * Time: 15:58
  */
 angular.module("app.files")
-  .controller("filesController", function ctrl($scope, folder, $http, $location, $route, $upload, $q, $filter, modal, $timeout, $interval, $mdSidenav, $mdBottomSheet, audioPlayer) {
+  .controller("filesController", function ctrl($scope, folder, $http, $location, $route, $upload, $q, $filter, modal, $timeout, $interval, $mdSidenav, $mdBottomSheet, audioPlayer, $mdDialog) {
     var $$scope = $scope;
     var forbiddenFiles = ['thumbs.db'];
     var orderBy = $filter('orderBy');
@@ -18,6 +18,25 @@ angular.module("app.files")
       var regex = /audio\/mpeg/gi;
       return regex.test(mime);
     }
+
+    $scope.showPicture = function (ev, image) {
+      $mdDialog.show({
+        controller: function ($scope, $mdDialog, image) {
+          $scope.image = image;
+          $scope.cancel = $mdDialog.cancel;
+        },
+        templateUrl: '/app/modules/files/templates/picture.modal.html',
+        targetEvent: ev,
+        locals: {
+          image: image
+        }
+      });
+    };
+    $scope.setViewMode = function (mode) {
+      $scope.viewMode = mode;
+      $location.search('viewMode', mode);
+      $mdSidenav('right').close();
+    };
 
     $scope.rnd = function () {
       return Math.floor(Math.random() * 100);
@@ -41,7 +60,7 @@ angular.module("app.files")
     $scope.href = function (file) {
       if (isImage(file.mime)) {
         //todo
-      } else if(isMusic(file.mime)) {
+      } else if (isMusic(file.mime)) {
         //todo
       } else {
         return 'api/v1/file/' + file.id + '/' + file.name;
@@ -49,6 +68,7 @@ angular.module("app.files")
     };
 
     function initFolder(folder) {
+      var defaultViewMode = 'files';
       $$scope.$$folder = folder;
       $$scope.folder = orderBy(folder.children, 'name');
       $$scope.files = orderBy(folder.files, 'name');
@@ -68,13 +88,18 @@ angular.module("app.files")
           $timeout(function () {
             dialog.open();
           }, 0, false);
-        }else if(isMusic(file.mime)){
+        } else if (isMusic(file.mime)) {
           audioPlayer.load('api/v1/file/' + file.id + '/' + file.name);
           audioPlayer.show();
           audioPlayer.play();
         }
       };
 
+      if($$scope.images.length == $$scope.files.length){
+        defaultViewMode = 'pictures';
+      }
+
+      $scope.viewMode = $location.search().viewMode || defaultViewMode;
       $scope.canGoBack = !!folder.parent;
       //console.log("folder", folder);
 
